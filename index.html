@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO</title>
+    <title>TodoList</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
+    <header>
+        <h1>TodoList</h1>
+        
+    </header>
+    <main>
+        <h1>Write a new task!</h1>
+        <p>
+            Use the form below to add a new task to your todo list. 
+            Simply enter the task description and click "Add Task" 
+            to keep track of your to-dos.
+        </p>
+
+        <div class="dialogbox">
+            <input type="text" id="taskinput" placeholder="Drink water">
+            <button id="addtask">Add Task</button>
+        </div>
+        <div class="list">
+            <h2>My Tasks</h2>
+            <ul id="tasklist">
+                <li class="task">
+                    <input 
+                        class="check" 
+                        type="checkbox"
+                    >
+                    <span class="text">Example Task</span>
+                    <button class="delete">Delete</button>
+                </li>
+            </ul>
+        </div>
+        <div class="utils">
+            <button id="clearcompleted">Clear Completed</button>
+            <button id="cleartasks">Clear All Tasks</button>
+            <button id="markall">Mark All as Completed</button>
+            <button id="unmarkall">Mark All as Uncompleted</button>
+            <button id="toggleall">Toggle All Tasks</button>
+            <button id="togglenext">Toggle Next</button>
+        </div>
+    </main>
+    <footer>
+        &copy; 2026 Daniel Menezes. Direitos reservados.
+    </footer>
     <script src="./script.js"></script>
 </body>
+
 </html>
