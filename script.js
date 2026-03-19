@@ -49,9 +49,29 @@ function newTask(name, state = false) {
     tasklist.appendChild(newTask);
     setInterval(setState, 100);
 }
+
+/**
+ * @param {string} string 
+ */
+function evaluateExpression(string) {
+    let ret = /** @type {string[]} */ ([]);
+    ret = [...ret, 
+        ...string.split(/\s*(?<!\\);\s*/g)
+    ];
+    ret = ret.map((v) => v.replace(/\\;/g, ";"));     
+    
+    const taskslen = saveTasks()
+    ret = ret.map((v, i) => v.replaceAll(/(?<!\\)\$n/g, taskslen.length + i + 1))
+
+    ret = ret.filter((v)=>v.trim()!=="");
+    return ret;
+}
 function addTask() {
     if (taskinput.value.trim() === "") return;
-    newTask(taskinput.value.trim());
+    evaluateExpression(taskinput.value.trim())
+    .forEach((task) => {
+        newTask(task);
+    });
     taskinput.value = "";
 }
 
@@ -70,6 +90,7 @@ function saveTasks() {
         tasks.push({ text, completed });
     });
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    return tasks
 }
 
 function loadTasks() {
